@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'PingMe',
   description: 'Z世代の性格診断アプリ',
+  other: {
+    'google-site-verification': 'Dpi69ZFoy23BM41YX4mWrSwYUFC_BXW3SoW6Q3IqCUs',
+  },
 };
 
 export default function RootLayout({
