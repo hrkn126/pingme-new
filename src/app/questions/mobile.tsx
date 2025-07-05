@@ -29,7 +29,7 @@ export default function QuestionsPageMobile() {
 
   const isLastPage = (currentPage + 1) * questionsPerPage >= questions.length;
 
-  const handleAnswer = (id: number, value: number, index: number) => {
+  const handleAnswer = (id: number, value: number) => {
     setAnswers(prev => ({ ...prev, [id]: value }));
     setError('');
 
@@ -54,7 +54,7 @@ export default function QuestionsPageMobile() {
     }
   };
 
-  const renderScale = (questionId: number, index: number) => {
+  const renderScale = (questionId: number) => {
     const scale = [-3, -2, -1, 0, 1, 2, 3];
     const sizeMap: { [key: number]: string } = {
       '-3': 'w-12 h-12',
@@ -73,7 +73,7 @@ export default function QuestionsPageMobile() {
           {scale.map(value => (
             <button
               key={value}
-              onClick={() => handleAnswer(questionId, value, index)}
+              onClick={() => handleAnswer(questionId, value)}
               className={`rounded-full border-2 transition-all duration-200 ${sizeMap[value]} 
                 ${answers[questionId] === value
                   ? value > 0
@@ -121,17 +121,17 @@ export default function QuestionsPageMobile() {
         </div>
       ) : (
         <div className="w-full">
-          {currentQuestions.map((q, _idx) => (
+          {currentQuestions.map((q) => (
             <div
               key={q.id}
               ref={(el) => {
-                questionRefs.current[_idx] = el;
+                questionRefs.current[q.id] = el;
               }}
               className="bg-gray-50 p-6 rounded-xl shadow mb-10 w-full"
             >
               <p className="text-xl font-semibold mb-4 text-center">{q.question}</p>
               <p className="text-sm text-gray-500 mb-4 text-center">例：{q.example}</p>
-              {renderScale(q.id, _idx)}
+              {renderScale(q.id)}
             </div>
           ))}
 

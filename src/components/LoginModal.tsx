@@ -21,7 +21,7 @@ export default function LoginModal({ isOpen, onClose, isLogin }: Props) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const db = getFirestore(app); // Firestore 初期化
+  const db = getFirestore(app);
 
   useEffect(() => {
     setMode(isLogin);
@@ -56,8 +56,13 @@ export default function LoginModal({ isOpen, onClose, isLogin }: Props) {
     } catch (err: unknown) {
       let msg = 'ログインに失敗しました。';
 
-      if (err instanceof Error) {
-        const code = (err as any).code;
+      if (
+        err &&
+        typeof err === 'object' &&
+        'code' in err &&
+        typeof (err as { code: unknown }).code === 'string'
+      ) {
+        const code = (err as { code: string }).code;
 
         msg =
           code === 'auth/email-already-in-use'

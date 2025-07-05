@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { usePremiumStatus } from '@/hooks/usePremiumStatus';
 import { getPurchaseDate } from '@/utils/getPurchaseDate'; // 🔑 Firestoreから取得する関数
-import Link from 'next/link';
 
 export default function PremiumSection() {
   const hasPremium = usePremiumStatus();
