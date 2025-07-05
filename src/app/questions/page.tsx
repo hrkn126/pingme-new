@@ -49,8 +49,8 @@ export default function QuestionsPage() {
     if (isLastPage) {
       const userAnswers: number[] = questions.map(q => answers[q.id] ?? 0);
       const type = calculateFinalType(userAnswers);
-      localStorage.setItem('finalType', type); // ローカルに一時保存
-      router.push('/loading'); // ローディングページへ
+      localStorage.setItem('finalType', type);
+      router.push('/loading');
     } else {
       setCurrentPage(prev => prev + 1);
     }
@@ -92,12 +92,12 @@ export default function QuestionsPage() {
               <span className="text-green-600">そう思う</span>
               <span className="text-purple-600">そう思わない</span>
             </div>
-            <div className="flex flex-wrap justify-center gap-3 px-2">
+            <div className="flex flex-nowrap justify-center gap-2 sm:gap-3 overflow-x-auto px-2">
               {[-3, -2, -1, 0, 1, 2, 3].map(value => (
                 <button
                   key={value}
                   onClick={() => handleAnswer(q.id, value, idx)}
-                  className={`rounded-full border-2 transition-all duration-200
+                  className={`rounded-full border-2 transition-all duration-200 shrink-0
                     ${value === -3 || value === 3 ? 'w-16 h-16' :
                       value === -2 || value === 2 ? 'w-12 h-12' :
                       value === -1 || value === 1 ? 'w-10 h-10' : 'w-8 h-8'}
