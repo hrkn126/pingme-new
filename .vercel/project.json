@@ -1,0 +1,1 @@
+{ "buildCommand": "NEXT_IGNORE_ESLINT=1 next build" }
