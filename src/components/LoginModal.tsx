@@ -53,15 +53,22 @@ export default function LoginModal({ isOpen, onClose, isLogin }: Props) {
         });
       }
       onClose();
-    } catch (err: any) {
-      const msg =
-        err?.code === 'auth/email-already-in-use'
-          ? 'このメールアドレスは既に使われています。'
-          : err?.code === 'auth/invalid-email'
-          ? 'メールアドレスの形式が正しくありません。'
-          : err?.code === 'auth/weak-password'
-          ? 'パスワードは6文字以上にしてください。'
-          : 'ログインに失敗しました。';
+    } catch (err: unknown) {
+      let msg = 'ログインに失敗しました。';
+
+      if (err instanceof Error) {
+        const code = (err as any).code;
+
+        msg =
+          code === 'auth/email-already-in-use'
+            ? 'このメールアドレスは既に使われています。'
+            : code === 'auth/invalid-email'
+            ? 'メールアドレスの形式が正しくありません。'
+            : code === 'auth/weak-password'
+            ? 'パスワードは6文字以上にしてください。'
+            : 'ログインに失敗しました。';
+      }
+
       setError(msg);
     } finally {
       setLoading(false);

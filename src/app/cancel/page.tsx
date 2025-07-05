@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link' // ← これを追加！
 
 export default function CancelPage() {
   return (
@@ -13,12 +14,12 @@ export default function CancelPage() {
         ご購入が完了しなかったため、<br />
         プレミアム特典はまだ付与されていません。
       </p>
-      <a
+      <Link
         href="/"
         className="mt-4 px-6 py-3 rounded-lg bg-white text-red-700 border border-red-300 hover:bg-red-50 transition font-semibold shadow-md"
       >
         トップに戻る
-      </a>
+      </Link>
     </div>
   )
 }

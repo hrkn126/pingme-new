@@ -1,10 +1,6 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-// ✅ サーバー用環境変数を使う！
-console.log('🧪 Stripe key:', process.env.STRIPE_SECRET_KEY);
-console.log('🧪 Price ID:', process.env.STRIPE_PRICE_ID); // ← 修正！
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? '', {
   apiVersion: '2022-11-15',
 });
@@ -16,17 +12,22 @@ export async function POST() {
       payment_method_types: ['card'],
       line_items: [
         {
-          price: process.env.STRIPE_PRICE_ID ?? '', // ← 修正！
+          price: process.env.STRIPE_PRICE_ID ?? '',
           quantity: 1,
         },
       ],
-      success_url: 'http://localhost:3000/success',
-      cancel_url: 'http://localhost:3000/cancel',
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cancel`,
     });
 
     return NextResponse.json({ url: session.url });
-  } catch (err: any) {
-    console.error('🔥 Stripe error:', err.message);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error('🔥 Stripe error:', err.message);
+    } else {
+      console.error('🔥 Unknown error:', err);
+    }
+
     return NextResponse.json({ error: 'Something went wrong.' }, { status: 500 });
   }
 }

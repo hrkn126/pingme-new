@@ -121,17 +121,17 @@ export default function QuestionsPageMobile() {
         </div>
       ) : (
         <div className="w-full">
-          {currentQuestions.map((q, idx) => (
+          {currentQuestions.map((q, _idx) => (
             <div
               key={q.id}
               ref={(el) => {
-                questionRefs.current[idx] = el;
+                questionRefs.current[_idx] = el;
               }}
               className="bg-gray-50 p-6 rounded-xl shadow mb-10 w-full"
             >
               <p className="text-xl font-semibold mb-4 text-center">{q.question}</p>
               <p className="text-sm text-gray-500 mb-4 text-center">例：{q.example}</p>
-              {renderScale(q.id, idx)}
+              {renderScale(q.id, _idx)}
             </div>
           ))}
 

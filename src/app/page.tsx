@@ -78,28 +78,24 @@ export default function Home() {
         </section>
 
         {/* ✨ 導入メッセージ */}
-<section className="px-4 sm:px-8 py-10 text-center">
-  <h3 className="text-lg sm:text-xl font-semibold mb-4">自分を知ることから、すべてが変わる。</h3>
-  <p className="max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-gray-800">
-    私たちは日々、<strong>「ちゃんとしなきゃ」「人に迷惑をかけないように」</strong>と、<br />
-    <strong>“外側の正解”に合わせて</strong>自分をつくってしまいがちです。<br />
-    でも本当は、<strong>どんな自分でも、自分だけは味方でいてあげる</strong>ことが、<br />
-    <strong>生きやすさのはじまり</strong>になります。<br />
-    <br />
-    まずは、<strong>自分のことを知ること</strong>。<br />
-    どんなときに嬉しくて、何がしんどくて、どう感じるのか。<br />
-    あなたの中にある<strong>“思考・感情・反応のクセ”</strong>を知ることで、<br />
-    <strong>「自分らしさ」の設計図</strong>が見えてきます。<br />
-    <br />
-    この診断は、<strong>あなたが“自分と仲良くなる”ための第一歩</strong>です。<br />
-    <strong>比べるためではなく、受け入れるために</strong>。<br />
-    軽やかに、<strong>自分らしい人生</strong>を歩いていくために。<br />
-    <br />
-    さあ、<strong>直感のままに答えてみてください</strong>。<br />
-    正解のない世界で、<strong>自分の輪郭を確かめにいきましょう</strong>。
-  </p>
-</section>
-
+        <section className="px-4 sm:px-8 py-10 text-center">
+          <h3 className="text-lg sm:text-xl font-semibold mb-4">自分を知ることから、すべてが変わる。</h3>
+          <p className="max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-gray-800">
+            私たちは日々、<strong>「ちゃんとしなきゃ」「人に迷惑をかけないように」</strong>と、<br />
+            <strong>“外側の正解”に合わせて</strong>自分をつくってしまいがちです。<br />
+            でも本当は、<strong>どんな自分でも、自分だけは味方でいてあげる</strong>ことが、<br />
+            <strong>生きやすさのはじまり</strong>になります。<br /><br />
+            まずは、<strong>自分のことを知ること</strong>。<br />
+            どんなときに嬉しくて、何がしんどくて、どう感じるのか。<br />
+            あなたの中にある<strong>“思考・感情・反応のクセ”</strong>を知ることで、<br />
+            <strong>「自分らしさ」の設計図</strong>が見えてきます。<br /><br />
+            この診断は、<strong>あなたが“自分と仲良くなる”ための第一歩</strong>です。<br />
+            <strong>比べるためではなく、受け入れるために</strong>。<br />
+            軽やかに、<strong>自分らしい人生</strong>を歩いていくために。<br /><br />
+            さあ、<strong>直感のままに答えてみてください</strong>。<br />
+            正解のない世界で、<strong>自分の輪郭を確かめにいきましょう</strong>。
+          </p>
+        </section>
 
         {/* 診断開始ボタン */}
         <section id="start" className="py-12 text-center px-4">
@@ -110,6 +106,13 @@ export default function Home() {
             </button>
           </Link>
         </section>
+
+        {/* ✅ isLoggedIn を使っていることを明示（開発環境でのみ表示） */}
+        {process.env.NODE_ENV === 'development' && (
+          <p className="text-center text-xs text-gray-500 mt-2">
+            isLoggedIn: {isLoggedIn ? '✅ ログイン中' : '❌ 未ログイン'}
+          </p>
+        )}
 
         {/* フッター */}
         <footer className="bg-white/50 backdrop-blur-sm py-6 text-center text-xs sm:text-sm text-gray-600">
