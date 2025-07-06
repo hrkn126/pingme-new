@@ -5,7 +5,8 @@ import { useRouter, useParams } from 'next/navigation'
 
 export default function ResultPage() {
   const router = useRouter()
-  const { type } = useParams()
+  const params = useParams()
+  const type = params?.type as string  // ←ここで安全にキャスト！
 
   useEffect(() => {
     if (typeof type === 'string') {
